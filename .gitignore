@@ -3,10 +3,10 @@
 ################################################################################
 
 #/Library
-/Logs
-/Packages
-/PojectSettings
-/obj
+#/Logs
+#/Packages
+#/PojectSettings
+#/obj
 
 /NewORIGINAL__7.sln
 /Assembly-CSharp-Editor.csproj
