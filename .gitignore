@@ -1,0 +1,15 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/Library
+/Logs
+/Packages
+/PojectSettings
+/obj
+
+/NewORIGINAL__7.sln
+/Assembly-CSharp-Editor.csproj
+/Temp
+/Assembly-CSharp.csproj
+/.vs/NewORIGINAL__7/v16
