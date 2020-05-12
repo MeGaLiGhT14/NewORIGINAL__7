@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Zone UI/Scenes/Main Menu (Desktop).unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
