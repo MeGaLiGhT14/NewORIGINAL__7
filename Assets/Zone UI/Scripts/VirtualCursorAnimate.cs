@@ -28,5 +28,6 @@ namespace Michsky.UI.Zone
         {
             virtualCursor.AnimateCursorOut();
         }
+
     }
 }
