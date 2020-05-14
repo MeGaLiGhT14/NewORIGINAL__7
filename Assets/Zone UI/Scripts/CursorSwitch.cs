@@ -28,8 +28,13 @@ namespace Michsky.UI.Zone
                 }
 
                 SortBlocks();
-                DeleteBlockCopies();
+                ClearBlockCopies();
             }
+        }
+
+        private void Start()
+        {
+            DeleteEmptyBlocks();
         }
 
         private void Update()
@@ -145,7 +150,7 @@ namespace Michsky.UI.Zone
             }
         }
 
-        private void DeleteBlockCopies()
+        private void ClearBlockCopies()
         {
             foreach (Block block1 in _blocks)
             {
@@ -158,11 +163,23 @@ namespace Michsky.UI.Zone
                             if (block1 != block2 && block1.UIObject == block2.UIObject)
                             {
                                 Debug.LogWarning("The same block can be in the same list only once");
-                                //Debug.LogError("The same block can be in the same list only once");
                                 block2.ClearBlock();
                             }
                         }
                     }
+                }
+            }
+        }
+
+        private void DeleteEmptyBlocks()
+        {
+            for (int i = 0; i < _blocks.Count; i++)
+            {
+                if (_blocks[i].UIObject == null)
+                {
+                    Debug.LogError("Block cannot be empty");
+                    _blocks.Remove(_blocks[i]);
+                    i--;
                 }
             }
         }
