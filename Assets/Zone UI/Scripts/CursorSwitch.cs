@@ -42,13 +42,9 @@ namespace Michsky.UI.Zone
             if (_isActive)
             {
                 if (Input.GetKeyDown(KeyCode.D))
-                {
                     SwitchBlock(1);
-                }
                 else if (Input.GetKeyDown(KeyCode.A))
-                {
                     SwitchBlock(-1);
-                }
             }
             else if (_awaitingActivation)
             {
@@ -57,8 +53,7 @@ namespace Michsky.UI.Zone
                 if (_activationTime <= 0)
                 {
                     _activationTime = 0;
-                    _isActive = true;
-                    SetSelectBlock(true);
+                    ActivateCursor();
                 }
             }
         }
@@ -66,20 +61,15 @@ namespace Michsky.UI.Zone
         public void ActivateCursor()
         {
             _isActive = true;
-
             SetSelectBlock(true);
         }
 
         public void ActivateCursorOverTime(float time)
         {
             if (time > 0)
-            {
                 _activationTime = time;
-            }
             else
-            {
                 ActivateCursor();
-            }
         }
 
         public void DeactivateCursor()
@@ -106,9 +96,7 @@ namespace Michsky.UI.Zone
                 }
 
                 if (orderIsFree)
-                {
                     return order;
-                }
             }
             return 0;
         }
@@ -198,13 +186,9 @@ namespace Michsky.UI.Zone
                 CursorIndex += step;
 
                 if (CursorIndex >= _blocks.Count)
-                {
                     CursorIndex -= _blocks.Count;
-                }
                 else if (CursorIndex < 0)
-                {
                     CursorIndex += _blocks.Count;
-                }
 
                 SetSelectBlock(true);
             }
