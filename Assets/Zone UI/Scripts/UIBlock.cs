@@ -8,8 +8,8 @@ namespace Michsky.UI.Zone
     public class UIBlock : MonoBehaviour
     { 
         [Header("EVENTS")]
-        [SerializeField] private UnityEvent _toSelected;
-        [SerializeField] private UnityEvent _toDeselected;
+        [SerializeField] private UnityEvent _selected;
+        [SerializeField] private UnityEvent _deselected;
 
         private bool _isSelected = false;
 
@@ -18,9 +18,9 @@ namespace Michsky.UI.Zone
             _isSelected = isSelected;
 
             if (_isSelected)
-                _toSelected.Invoke();
+                _selected.Invoke();
             else
-                _toDeselected.Invoke();
+                _deselected.Invoke();
         }
     }
 }
