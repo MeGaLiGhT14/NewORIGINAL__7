@@ -32,23 +32,13 @@ namespace Michsky.UI.Zone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            PlayHoverSound();
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            PlayClickSound();
-        }
-
-        public void PlayHoverSound()
-        {
             if (enableHoverSound == true)
             {
                 HoverSource.PlayOneShot(hoverSound);
             }
         }
 
-        public void PlayClickSound()
+        public void OnPointerClick(PointerEventData eventData)
         {
             if (enableClickSound == true)
             {
