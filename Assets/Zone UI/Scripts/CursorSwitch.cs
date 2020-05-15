@@ -24,17 +24,22 @@ namespace Michsky.UI.Zone
                 foreach (Block block in _blocks)
                 {
                     ClampOrder(block);
-                    RemoveDuplicates(block);
+
+                    if (CheckDuplicateOrder(block))
+                        Debug.LogError("Block order cannot be repeated in one list");
                 }
 
                 SortBlocks();
-                ClearBlockCopies();
+
+                if (CheckDuplicateBlock())
+                    Debug.LogError("The same block can be in the same list only once");
             }
         }
 
         private void Start()
         {
-            DeleteEmptyBlocks();
+            if(CheckEmptyBlocks())
+                Debug.LogError("Block cannot be empty");
         }
 
         private void Update()
@@ -110,16 +115,16 @@ namespace Michsky.UI.Zone
             }
         }
 
-        private void RemoveDuplicates(Block block)
+        private bool CheckDuplicateOrder(Block block)
         {
             for (int i = 0; i < _blocks.Count; i++)
             {
                 if (block.Order == _blocks[i].Order && block != _blocks[i])
                 {
-                    Debug.LogWarning("Block order cannot be repeated in one list");
-                    block.SetOrder(GetFreeOrder());
+                    return true;
                 }
             }
+            return false;
         }
 
         private void SortBlocks()
@@ -138,7 +143,7 @@ namespace Michsky.UI.Zone
             }
         }
 
-        private void ClearBlockCopies()
+        private bool CheckDuplicateBlock()
         {
             foreach (Block block1 in _blocks)
             {
@@ -150,26 +155,25 @@ namespace Michsky.UI.Zone
                         {
                             if (block1 != block2 && block1.UIObject == block2.UIObject)
                             {
-                                Debug.LogWarning("The same block can be in the same list only once");
-                                block2.ClearBlock();
+                                return true;
                             }
                         }
                     }
                 }
             }
+            return false;
         }
 
-        private void DeleteEmptyBlocks()
+        private bool CheckEmptyBlocks()
         {
-            for (int i = 0; i < _blocks.Count; i++)
+            foreach (Block block in _blocks)
             {
-                if (_blocks[i].UIObject == null)
+                if (block.UIObject == null)
                 {
-                    Debug.LogError("Block cannot be empty");
-                    _blocks.Remove(_blocks[i]);
-                    i--;
+                    return true;
                 }
             }
+            return false;
         }
 
         private void SetSelectBlock(bool isSelect)
